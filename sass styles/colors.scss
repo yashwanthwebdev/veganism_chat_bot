@@ -1,0 +1,23 @@
+$backgroundColors: (
+  "primary": green,
+  "secondary": red,
+  "tertiary": purple,
+);
+
+@each $key, $val in $backgroundColors {
+  .bg-#{$key} {
+    background-color: $val;
+  }
+
+  @for $i from 1 through 2 {
+    .text-#{$key}-light-#{$i} {
+      color: mix(white, $val, $i * 10);
+    }
+    .text-hover-#{$key}-light-#{$i} {
+      &:hover {
+        // color: mix(black, $val, $i * 5);
+        color: mix(white, $val, $i * 5);
+      }
+    }
+  }
+}

@@ -41,13 +41,6 @@ function App() {
 
   useEffect(() => {
     loadModel();
-    // checkUserActivity();
-    // var askButton = document.getElementById("askInput");
-    // askButton.addEventListener("keypress", onEnterPress);
-
-    // return () => {
-    //   document.removeEventListener("keypress", onEnterPress);
-    // };
   }, []);
 
   useEffect(() => {

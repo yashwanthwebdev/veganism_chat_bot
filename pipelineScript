@@ -1,0 +1,22 @@
+
+pipeline { 
+ agent any 
+ tools { 
+    maven 'Maven3'
+     
+ }
+ 
+ stages { 
+ 
+     stage("build maven") {
+         
+         steps {
+         
+        checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/yashwanthwebdev/veganism_chat_bot.git/']])
+         bat 'mvn clean install'
+         
+         }
+         
+         }
+     }
+     }

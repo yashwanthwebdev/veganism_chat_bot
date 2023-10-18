@@ -40,6 +40,7 @@ function App() {
   };
 
   useEffect(() => {
+    // comment 1
     loadModel();
   }, []);
 

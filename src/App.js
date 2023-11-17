@@ -184,6 +184,12 @@ function App() {
       className="App"
       style={{
         backgroundColor: "rgb(43, 42, 39)",
+        // backgroundColor: "white",
+        margin: "0ch",
+        padding: "0ch",
+        height: "100vh",
+        // border: "10px red solid",
+        boxSizing: "border-box",
       }}
     >
       {model ? (
@@ -191,7 +197,8 @@ function App() {
           direction="column"
           spacing={3}
           sx={{
-            height: "100vh",
+            // backgroundColor: "red",
+            height: "90%",
             justifyContent: "space-evenly",
           }}
         >
@@ -208,18 +215,35 @@ function App() {
             }}
           >
             <Stack
-              sx={{
-                // background:
-                //   "linear-gradient(to right, rgb(67,124,205), rgb(69,214,202))",
-                background:
-                  // "linear-gradient(to right, rgb(168, 60, 50), rgb(50, 168, 54))",
-                  "linear-gradient(to right, rgb(168, 60, 50), rgb(125, 235, 52))",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
+              direction="column"
+              sx={
+                {
+                  // background:
+                  //   "linear-gradient(to right, rgb(67,124,205), rgb(69,214,202))",
+                }
+              }
             >
-              <Typography sx={{ fontWeight: "800", fontSize: "1.4rem" }}>
+              <Typography
+                sx={{
+                  fontWeight: "800",
+                  fontSize: "1.9rem",
+                  background:
+                    // "linear-gradient(to right, rgb(168, 60, 50), rgb(50, 168, 54))",
+                    "linear-gradient(to right, rgb(168, 60, 50), rgb(125, 235, 52))",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  fontFamily: "monospace",
+                  letterSpacing: "0.2ch",
+                }}
+              >
                 Veganism chatbot
+              </Typography>
+              <Typography
+                variant="caption"
+                // sx={{ fontWeight: "700", fontSize: "0.8rem", color: "white" }}
+                sx={{ color: "white" }}
+              >
+                (work in progress)
               </Typography>
             </Stack>
 
@@ -234,7 +258,9 @@ function App() {
               sx={{
                 width: "100%",
                 border: "none",
-                boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                // boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                // boxShadow: "rgba(0, 0, 0, 0.45) 0px 15px 20px -20px",
+                boxShadow: "grey 0px 15px 20px -18px",
                 backgroundColor: "lightgrey",
                 borderRadius: "1ch",
                 alignSelf: "center",

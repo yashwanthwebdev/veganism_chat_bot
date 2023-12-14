@@ -46,10 +46,6 @@ function App() {
     loadModel();
   }, []);
 
-  useEffect(() => {
-    console.log("qustion  : ", question);
-  }, [question]);
-
   async function cosineDistance() {
     if (question.trim() === "") {
       setError(true);
@@ -367,13 +363,18 @@ function App() {
                   <Typography
                     variant="subtitle"
                     sx={{
-                      fontWeight: "600",
+                      // fontWeight: "600",
                       letterSpacing: "0.2ch",
                       color: "grey",
                       color: "#D3D3D3",
+                      fontFamily: "'Orbitron', sans-serif",
+                      fontSize: {
+                        xs: "0.75rem",
+                        lg: "0.8rem",
+                      },
                     }}
                   >
-                    *busy uttering magic spells*
+                    *please wait till I come up with the best reply*
                   </Typography>
                 </Stack>
               ) : (

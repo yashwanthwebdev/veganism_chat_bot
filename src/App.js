@@ -177,7 +177,7 @@ function App() {
 
   return (
     <Stack
-      xs={3}
+      // xs={3}
       className="App"
       style={{
         backgroundColor: "rgb(43, 42, 39)",
@@ -248,7 +248,7 @@ function App() {
             <Stack
               direction="column"
               sx={{
-                height: "70%",
+                height: "60%",
                 // width: "50%",
                 width: { xs: "100%", md: "100%", lg: "100%" },
                 // backgroundColor: "lightgrey",

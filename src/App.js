@@ -13,6 +13,7 @@ import { diceCoefficient } from "dice-coefficient";
 import LinearProgress from "@mui/material/LinearProgress";
 import Alert from "@mui/material/Alert";
 import styles from "./App.css";
+import SendIcon from "@mui/icons-material/Send";
 
 // import { Dna } from "react-loader-spinner";
 
@@ -198,20 +199,20 @@ function App() {
           spacing={3}
           sx={{
             // backgroundColor: "red",
-            height: "90%",
-            justifyContent: "space-evenly",
+            height: "100%",
+            justifyContent: "space-around",
           }}
         >
           <Stack
             direction="column"
             spacing={2}
             sx={{
-              // width: "50%",
               alignSelf: "center",
               width: { xs: "90%", md: "70%", lg: "50%" },
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
+              height: "100%",
             }}
           >
             <Stack
@@ -232,188 +233,220 @@ function App() {
                     "linear-gradient(to right, rgb(168, 60, 50), rgb(125, 235, 52))",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
-                  fontFamily: "monospace",
                   letterSpacing: "0.2ch",
+                  fontFamily: "'Silkscreen', sans-serif",
                 }}
               >
                 Veganism chatbot
               </Typography>
-              <Typography
+              {/* <Typography
                 variant="caption"
                 // sx={{ fontWeight: "700", fontSize: "0.8rem", color: "white" }}
                 sx={{ color: "white" }}
               >
                 (work in progress)
-              </Typography>
+              </Typography> */}
             </Stack>
 
-            {/* question */}
-            <TextField
-              id="askInput"
-              value={question}
-              onChange={(event) => {
-                setQuestion(event.target.value);
-                setUserLastActive(0);
-              }}
-              sx={{
-                width: "100%",
-                border: "none",
-                // boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-                // boxShadow: "rgba(0, 0, 0, 0.45) 0px 15px 20px -20px",
-                boxShadow: "grey 0px 15px 20px -18px",
-                backgroundColor: "lightgrey",
-                borderRadius: "1ch",
-                alignSelf: "center",
-              }}
-            ></TextField>
-            {error ? <Alert severity="error">Type something</Alert> : <></>}
-
-            <Button
-              variant="contained"
-              // onClick={() => findSuitableReply()}
-              // onClick={() => correctReply()}
-              onClick={() => cosineDistance()}
-            >
-              TELL
-            </Button>
-            {/* <button className="buttonSubmit bg-secondary text-primary-light-2  text-hover-tertiary-light-1  ">
-              Number 2 tell
-            </button> */}
-          </Stack>
-
-          <Stack
-            direction="column"
-            sx={{
-              height: "70%",
-              // width: "50%",
-              width: { xs: "90%", md: "70%", lg: "50%" },
-              backgroundColor: "lightgrey",
-              // backgroundColor: "rgb(43, 42, 39)",
-              alignSelf: "center",
-              // boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-              borderRadius: "1ch",
-              justifyContent: "space-around",
-            }}
-          >
-            {/* answer  */}
+            {/* chat box  */}
             <Stack
-              id="convoBox"
               direction="column"
               sx={{
-                // overflowY: "scroll",
-                overflowY: "scroll",
-                scrollSnapType: "y mandatory",
-                height: "95%",
-                width: "100%",
+                height: "70%",
+                // width: "50%",
+                width: { xs: "100%", md: "100%", lg: "100%" },
                 // backgroundColor: "lightgrey",
-                // backgroundColor: "orange",
+                // backgroundColor: "rgb(43, 42, 39)",
                 alignSelf: "center",
                 // boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-                // padding: "1ch",
                 borderRadius: "1ch",
+                justifyContent: "space-around",
               }}
-              spacing={3}
             >
-              {list.map((eachMessage, index) => {
-                return eachMessage.length > 0 ? (
-                  <Stack
-                    key={index}
-                    sx={{
-                      scrollSnapAlign: "end",
-                      alignSelf: index % 2 === 0 ? "end" : "start",
-                      marginRight: index % 2 === 0 ? "0ch" : "0ch",
-                      marginLeft: index % 2 === 0 ? "0ch" : "1ch",
-                      maxWidth: "50%",
-                      backgroundColor: index % 2 === 0 ? "lightgreen" : "white",
-                      color: index % 2 === 0 ? "black" : "black",
-                      padding: "1ch",
-                      borderRadius: "1ch",
-                      marginBottom: "1ch",
-                      wordWrap: "break-word",
-                    }}
-                  >
-                    <Typography
-                      // key={index}
+              {/* answer  */}
+              <Stack
+                id="convoBox"
+                direction="column"
+                sx={{
+                  // overflowY: "scroll",
+                  overflowY: "scroll",
+                  scrollSnapType: "y mandatory",
+                  height: "95%",
+                  width: "100%",
+                  // backgroundColor: "lightgrey",
+                  // backgroundColor: "orange",
+                  alignSelf: "center",
+                  // boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                  // padding: "1ch",
+                  borderRadius: "1ch",
+                }}
+                spacing={3}
+              >
+                {list.map((eachMessage, index) => {
+                  return eachMessage.length > 0 ? (
+                    <Stack
+                      key={index}
                       sx={{
-                        // scrollSnapAlign: "end",
-                        // alignSelf: index % 2 === 0 ? "end" : "start",
-                        // marginRight: index % 2 === 0 ? "0ch" : "0ch",
-                        // marginLeft: index % 2 === 0 ? "0ch" : "1ch",
-                        // maxWidth: "50%",
+                        scrollSnapAlign: "end",
+                        alignSelf: index % 2 === 0 ? "end" : "start",
+                        marginRight: index % 2 === 0 ? "0ch" : "0ch",
+                        marginLeft: index % 2 === 0 ? "0ch" : "1ch",
+                        maxWidth: "50%",
                         // backgroundColor:
                         //   index % 2 === 0 ? "lightgreen" : "white",
                         // color: index % 2 === 0 ? "black" : "black",
-                        // padding: "1ch",
-                        // borderRadius: "1ch",
-                        // marginBottom: "1ch",
+                        // color: index % 2 !== 0 ? "white" : "limegreen",
+                        color: index % 2 !== 0 ? "white" : "#0BFFFF",
+                        padding: "1ch",
+                        borderRadius: "1ch",
+                        marginBottom: "1ch",
                         wordWrap: "break-word",
+                        fontFamily: "'Oswald', sans-serif",
+                        fontWeight: "700",
                       }}
                     >
-                      {eachMessage.split("@")[0]}
-                    </Typography>
-
-                    <Stack spacing={2} direction="row">
-                      <Typography>
-                        {eachMessage.includes("@") ? (
-                          eachMessage.split("@").length >= 2 ? (
-                            <a
-                              href={`${eachMessage.split("@")[1]}`}
-                              target="_blank"
-                            >
-                              Link 1{" "}
-                            </a>
-                          ) : (
-                            <></>
-                          )
-                        ) : (
-                          <></>
-                        )}
+                      <Typography
+                        // key={index}
+                        sx={{
+                          fontFamily: "'Oswald', sans-serif",
+                          fontWeight: "700",
+                          wordWrap: "break-word",
+                        }}
+                      >
+                        {eachMessage.split("@")[0]}
                       </Typography>
 
-                      <Typography>
-                        {eachMessage.includes("@") ? (
-                          eachMessage.split("@").length >= 3 ? (
-                            <a
-                              href={`${eachMessage.split("@")[2]}`}
-                              target="_blank"
-                            >
-                              Link 2{" "}
-                            </a>
+                      <Stack spacing={2} direction="row">
+                        <Typography>
+                          {eachMessage.includes("@") ? (
+                            eachMessage.split("@").length >= 2 ? (
+                              <a
+                                href={`${eachMessage.split("@")[1]}`}
+                                target="_blank"
+                              >
+                                Link 1{" "}
+                              </a>
+                            ) : (
+                              <></>
+                            )
                           ) : (
                             <></>
-                          )
-                        ) : (
-                          <></>
-                        )}
-                      </Typography>
+                          )}
+                        </Typography>
+
+                        <Typography>
+                          {eachMessage.includes("@") ? (
+                            eachMessage.split("@").length >= 3 ? (
+                              <a
+                                href={`${eachMessage.split("@")[2]}`}
+                                target="_blank"
+                              >
+                                Link 2{" "}
+                              </a>
+                            ) : (
+                              <></>
+                            )
+                          ) : (
+                            <></>
+                          )}
+                        </Typography>
+                      </Stack>
                     </Stack>
-                  </Stack>
-                ) : (
-                  <></>
-                );
-              })}
-            </Stack>
-            {isProcessing === true ? (
-              <Stack
-                sx={{
-                  justifySelf: "end",
-                  marginLeft: "1ch",
-                }}
-              >
-                <Typography
-                  variant="subtitle"
+                  ) : (
+                    <></>
+                  );
+                })}
+              </Stack>
+              {isProcessing === true ? (
+                <Stack
                   sx={{
-                    fontWeight: "600",
-                    letterSpacing: "0.2ch",
-                    color: "black",
+                    justifySelf: "end",
+                    marginLeft: "1ch",
                   }}
                 >
-                  *busy uttering magic spells*
-                </Typography>
-              </Stack>
-            ) : (
-              <></>
-            )}
+                  <Typography
+                    variant="subtitle"
+                    sx={{
+                      fontWeight: "600",
+                      letterSpacing: "0.2ch",
+                      color: "grey",
+                      color: "#D3D3D3",
+                    }}
+                  >
+                    *busy uttering magic spells*
+                  </Typography>
+                </Stack>
+              ) : (
+                <></>
+              )}
+            </Stack>
+
+            {/* question */}
+            <Stack
+              direction="row"
+              sx={{
+                width: "100%",
+                position: "relative",
+                // outline: "2px orange solid",
+              }}
+            >
+              <TextField
+                id="askInput"
+                value={question}
+                onChange={(event) => {
+                  setQuestion(event.target.value);
+                  setUserLastActive(0);
+                }}
+                placeholder="type your question here..."
+                sx={{
+                  width: "100%",
+                  border: "none",
+                  // boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                  // boxShadow: "rgba(0, 0, 0, 0.45) 0px 15px 20px -20px",
+                  boxShadow: "grey 0px 15px 20px -18px",
+                  backgroundColor: "lightgrey",
+                  borderRadius: "1ch",
+                  alignSelf: "center",
+                }}
+              ></TextField>
+
+              {isProcessing === false ? (
+                <SendIcon
+                  sx={{
+                    position: "absolute",
+                    right: "1ch",
+                    color: "green",
+                    height: "100%",
+                    zIndex: "99999",
+                    // fill: "limegreen",
+                    fill: "teal",
+                  }}
+                  onClick={() => cosineDistance()}
+                ></SendIcon>
+              ) : (
+                <></>
+              )}
+              {/* <Button
+                sx={{
+                  position: "absolute",
+                  right: "0ch",
+                  // left: "10ch",
+                  // top: "auto",
+                  // bottom: "auto",
+                  height: "100%",
+                  outline: "2px red solid",
+                  zIndex: "99999",
+                }}
+                variant="contained"
+                onClick={() => cosineDistance()}
+              >
+                TELL
+              </Button> */}
+            </Stack>
+            {error ? <Alert severity="error">Type something</Alert> : <></>}
+            {/* <button className="buttonSubmit bg-secondary text-primary-light-2  text-hover-tertiary-light-1  ">
+              Number 2 tell
+            </button> */}
           </Stack>
         </Stack>
       ) : (

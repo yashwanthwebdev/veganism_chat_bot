@@ -495,10 +495,26 @@ function App() {
               fontSize: "2ch",
               marginTop: "2ch",
               marginBottom: "2ch",
+              fontFamily: "'Orbitron', sans-serif",
             }}
             variant="h4"
           >
             WAKING UP THE BOT
+            {/* <span
+              style={{
+                outline: "1px white solid",
+              }}
+            >
+              WAKING
+            </span>
+            UP THE
+            <span
+              style={{
+                outline: "1px white solid",
+              }}
+            >
+              BOT
+            </span> */}
           </Typography>
           <Stack
             direction="column"

@@ -214,12 +214,14 @@ function App() {
           >
             <Stack
               direction="column"
-              sx={
-                {
-                  // background:
-                  //   "linear-gradient(to right, rgb(67,124,205), rgb(69,214,202))",
-                }
-              }
+              sx={{
+                width: {
+                  xs: "80%",
+                  lg: "max-content",
+                },
+                // background:
+                //   "linear-gradient(to right, rgb(67,124,205), rgb(69,214,202))",
+              }}
             >
               <Typography
                 sx={{
@@ -497,37 +499,40 @@ function App() {
             height: "100vh",
             justifyContent: "center",
             // alignItems: "center",
+            width: {
+              xs: "90%",
+              lg: "30%",
+            },
+            alignSelf: "center",
           }}
         >
-          {/* <Dna
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="dna-loading"
-            wrapperStyle={{}}
-            wrapperClass="dna-wrapper"
-          /> */}
-
           <Stack
             direction="column"
             spacing={1}
+            sx={{ alignItems: "center" }}
             // sx={{ alignSelf: "center", alignItems: "center" }}
           >
-            {/* <LinearProgress
-              sx={{ width: "20%", alignSelf: "center" }}
-              color="secondary"
-            />
-            <LinearProgress
-              sx={{ width: "20%", alignSelf: "center" }}
-              color="success"
-            />
-            <LinearProgress
-              sx={{ width: "20%", alignSelf: "center" }}
-              // color="inherit"
-            /> */}
             <LinearProgress
               sx={{
-                width: "20%",
+                width: "100%",
+                backgroundColor: "teal",
+                borderRadius: "100%",
+                filter: "blur(0px)",
+                alignSelf: "center",
+              }}
+            />
+            <LinearProgress
+              sx={{
+                width: "80%",
+                backgroundColor: "teal",
+                borderRadius: "100%",
+                filter: "blur(0px)",
+                alignSelf: "center",
+              }}
+            />
+            <LinearProgress
+              sx={{
+                width: "40%",
                 backgroundColor: "teal",
                 borderRadius: "100%",
                 filter: "blur(0px)",
@@ -545,7 +550,7 @@ function App() {
             />
             <LinearProgress
               sx={{
-                width: "20%",
+                width: "5%",
                 backgroundColor: "teal",
                 borderRadius: "100%",
                 filter: "blur(0px)",
@@ -564,6 +569,7 @@ function App() {
               marginTop: "2ch",
               marginBottom: "2ch",
               fontFamily: "'Orbitron', sans-serif",
+              textAlign: "center",
             }}
             variant="h4"
           >
@@ -578,6 +584,15 @@ function App() {
             <LinearProgress
               sx={{
                 backgroundColor: "teal",
+                width: "5%",
+                borderRadius: "100%",
+                filter: "blur(0px)",
+                alignSelf: "center",
+              }}
+            />
+            <LinearProgress
+              sx={{
+                backgroundColor: "teal",
                 width: "20%",
                 borderRadius: "100%",
                 filter: "blur(0px)",
@@ -586,7 +601,16 @@ function App() {
             />
             <LinearProgress
               sx={{
-                width: "20%",
+                backgroundColor: "teal",
+                width: "40%",
+                borderRadius: "100%",
+                filter: "blur(0px)",
+                alignSelf: "center",
+              }}
+            />
+            <LinearProgress
+              sx={{
+                width: "80%",
                 backgroundColor: "teal",
                 borderRadius: "100%",
                 filter: "blur(0px)",
@@ -595,7 +619,7 @@ function App() {
             />
             <LinearProgress
               sx={{
-                width: "20%",
+                width: "100%",
                 backgroundColor: "teal",
                 borderRadius: "100%",
                 filter: "blur(0px)",

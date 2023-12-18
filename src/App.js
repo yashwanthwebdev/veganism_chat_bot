@@ -3,7 +3,7 @@ import { Button, TextField, Typography } from "@mui/material";
 import { userStatements, botQuestions } from "./dataset.js";
 // import { personalBotQuestions, personalUserTexts } from "./dataset.js";
 import { modelDataSet } from "./dataset.js";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo, useCallback } from "react";
 // import styles from "./App.module.css";
 import leven from "leven";
 import * as tf from "@tensorflow/tfjs";
@@ -14,7 +14,7 @@ import LinearProgress from "@mui/material/LinearProgress";
 import Alert from "@mui/material/Alert";
 import styles from "./App.css";
 import SendIcon from "@mui/icons-material/Send";
-
+import CircularProgress from "@mui/material/CircularProgress";
 // import { Dna } from "react-loader-spinner";
 
 import * as use from "@tensorflow-models/universal-sentence-encoder";
@@ -46,7 +46,8 @@ function App() {
     loadModel();
   }, []);
 
-  async function cosineDistance() {
+  async function memodCosineFunction() {
+    console.log("inside cosine function ");
     if (question.trim() === "") {
       setError(true);
       return;
@@ -105,12 +106,12 @@ function App() {
           .cosineDistance(embeddings[0], embeddings[index], 0)
           .data();
         tempDistance = tempDistance[0];
-        console.log(
-          "distance for ",
-          Object.keys(userStatements)[index - 1],
-          " : ",
-          tempDistance
-        );
+        // console.log(
+        //   "distance for ",
+        //   Object.keys(userStatements)[index - 1],
+        //   " : ",
+        //   tempDistance
+        // );
 
         if (tempDistance < minDistance) {
           minDistance = tempDistance;
@@ -235,6 +236,18 @@ function App() {
               >
                 Veganism chatbot
               </Typography>
+              <Stack sx={{ color: "red" }}>
+                <LinearProgress
+                  color="success"
+                  sx={{
+                    // backgroundColor: "teal",
+                    borderRadius: "100%",
+                    filter: "blur(0px)",
+                    backgroundColor: "limegreen",
+                    backgroundColor: "#7FFF00",
+                  }}
+                />
+              </Stack>
               {/* <Typography
                 variant="caption"
                 // sx={{ fontWeight: "700", fontSize: "0.8rem", color: "white" }}
@@ -281,7 +294,7 @@ function App() {
                 {list.map((eachMessage, index) => {
                   return eachMessage.length > 0 ? (
                     <Stack
-                      key={index}
+                      key={index + eachMessage}
                       sx={{
                         scrollSnapAlign: "end",
                         alignSelf: index % 2 === 0 ? "end" : "start",
@@ -353,11 +366,36 @@ function App() {
                   );
                 })}
               </Stack>
+              {/* {isProcessing === true ? (
+                <Stack
+                  direction="column"
+                  sx={{
+                    // justifySelf: "end",
+                    marginLeft: "1ch",
+                    width: "50%",
+
+                    // backgroundColor: "white",
+                    // justifyContent: "space-evenly",
+                  }}
+                >
+                  <LinearProgress
+                    sx={{
+                      backgroundColor: "teal",
+                      borderRadius: "100%",
+                      filter: "blur(2px)",
+                    }}
+                  />
+                </Stack>
+              ) : (
+                <></>
+              )} */}
               {isProcessing === true ? (
                 <Stack
                   sx={{
                     justifySelf: "end",
                     marginLeft: "1ch",
+                    backgroundColor: "grey",
+                    padding: "0.5ch",
                   }}
                 >
                   <Typography
@@ -367,14 +405,15 @@ function App() {
                       letterSpacing: "0.2ch",
                       color: "grey",
                       color: "#D3D3D3",
+                      color: "black",
                       fontFamily: "'Orbitron', sans-serif",
                       fontSize: {
                         xs: "0.75rem",
-                        lg: "0.8rem",
+                        lg: "0.7rem",
                       },
                     }}
                   >
-                    *please wait till I come up with the best reply*
+                    *please wait till I come up with a reply*
                   </Typography>
                 </Stack>
               ) : (
@@ -421,8 +460,9 @@ function App() {
                     zIndex: "99999",
                     // fill: "limegreen",
                     fill: "teal",
+                    cursor: "pointer",
                   }}
-                  onClick={() => cosineDistance()}
+                  onClick={() => memodCosineFunction()}
                 ></SendIcon>
               ) : (
                 <></>
@@ -473,7 +513,7 @@ function App() {
             spacing={1}
             // sx={{ alignSelf: "center", alignItems: "center" }}
           >
-            <LinearProgress
+            {/* <LinearProgress
               sx={{ width: "20%", alignSelf: "center" }}
               color="secondary"
             />
@@ -484,6 +524,33 @@ function App() {
             <LinearProgress
               sx={{ width: "20%", alignSelf: "center" }}
               // color="inherit"
+            /> */}
+            <LinearProgress
+              sx={{
+                width: "20%",
+                backgroundColor: "teal",
+                borderRadius: "100%",
+                filter: "blur(0px)",
+                alignSelf: "center",
+              }}
+            />
+            <LinearProgress
+              sx={{
+                width: "20%",
+                backgroundColor: "teal",
+                borderRadius: "100%",
+                filter: "blur(0px)",
+                alignSelf: "center",
+              }}
+            />
+            <LinearProgress
+              sx={{
+                width: "20%",
+                backgroundColor: "teal",
+                borderRadius: "100%",
+                filter: "blur(0px)",
+                alignSelf: "center",
+              }}
             />
           </Stack>
 
@@ -501,28 +568,41 @@ function App() {
             variant="h4"
           >
             WAKING UP THE BOT
-            {/* <span
-              style={{
-                outline: "1px white solid",
-              }}
-            >
-              WAKING
-            </span>
-            UP THE
-            <span
-              style={{
-                outline: "1px white solid",
-              }}
-            >
-              BOT
-            </span> */}
           </Typography>
           <Stack
             direction="column"
             spacing={1}
+
             // sx={{ alignSelf: "center", alignItems: "center" }}
           >
-            <LinearProgress sx={{ width: "20%", alignSelf: "center" }} />
+            <LinearProgress
+              sx={{
+                backgroundColor: "teal",
+                width: "20%",
+                borderRadius: "100%",
+                filter: "blur(0px)",
+                alignSelf: "center",
+              }}
+            />
+            <LinearProgress
+              sx={{
+                width: "20%",
+                backgroundColor: "teal",
+                borderRadius: "100%",
+                filter: "blur(0px)",
+                alignSelf: "center",
+              }}
+            />
+            <LinearProgress
+              sx={{
+                width: "20%",
+                backgroundColor: "teal",
+                borderRadius: "100%",
+                filter: "blur(0px)",
+                alignSelf: "center",
+              }}
+            />
+            {/* <LinearProgress sx={{ width: "20%", alignSelf: "center" }} />
             <LinearProgress
               sx={{ width: "20%", alignSelf: "center" }}
               color="success"
@@ -530,7 +610,7 @@ function App() {
             <LinearProgress
               sx={{ width: "20%", alignSelf: "center" }}
               color="secondary"
-            />
+            /> */}
           </Stack>
         </Stack>
       )}

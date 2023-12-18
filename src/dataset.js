@@ -3,10 +3,10 @@ export const userStatements = {
   // "hello hey hi":
   // "hey! would you like to talk about why we should all go vegan?",
   "hello hey hi":
-    "hey! I am glad that you want to talk to me about veganism. What do you want to ask me?",
+    "Hey! I am glad that you want to talk to me about veganism. What do you want to ask me?",
   "bye, catch you later, see you, cya ":
     "Bye! I hope that this conversation left you with thoughts and questions to help you see the reason to go vegan?",
-  "being vegan harms the environment": "actually, it is the contrary",
+  "being vegan harms the environment": "Actually, it is the contrary",
   "animals are not intelligent":
     "all animals are intellectually and emotionally sophisticated relative to their own species, and many have thoughts and emotions more complex than those of young human children or the mentally disabled. even so, it is not logical or equitable to withhold ethical considerations from individuals whom we imagine think or feel differently than we do. ",
   "animals kill other animals":

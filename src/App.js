@@ -1,20 +1,20 @@
 import Stack from "@mui/material/Stack";
-import { Button, TextField, Typography } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import { userStatements, botQuestions } from "./dataset.js";
 // import { personalBotQuestions, personalUserTexts } from "./dataset.js";
-import { modelDataSet } from "./dataset.js";
-import { useEffect, useState, useRef, useMemo, useCallback } from "react";
+// import { modelDataSet } from "./dataset.js";
+import { useEffect, useState, useRef } from "react";
 // import styles from "./App.module.css";
-import leven from "leven";
+// import leven from "leven";
 import * as tf from "@tensorflow/tfjs";
-import * as qna from "@tensorflow-models/qna";
-import { diceCoefficient } from "dice-coefficient";
+// import * as qna from "@tensorflow-models/qna";
+// import { diceCoefficient } from "dice-coefficient";
 // import use from "@tensorflow-models/universal-sentence-encoder";
 import LinearProgress from "@mui/material/LinearProgress";
 import Alert from "@mui/material/Alert";
-import styles from "./App.css";
+// import styles from "./App.css";
 import SendIcon from "@mui/icons-material/Send";
-import CircularProgress from "@mui/material/CircularProgress";
+// import CircularProgress from "@mui/material/CircularProgress";
 // import { Dna } from "react-loader-spinner";
 
 import * as use from "@tensorflow-models/universal-sentence-encoder";
@@ -37,7 +37,7 @@ function App() {
     // const loadedModel = await qna.load();
     const loadedModel = await use.load();
     setModel(loadedModel);
-    console.log("model has been loaded");
+    console.log("model is being loaded");
   };
 
   useEffect(() => {
@@ -47,7 +47,6 @@ function App() {
   }, []);
 
   async function memodCosineFunction() {
-    console.log("inside cosine function ");
     if (question.trim() === "") {
       setError(true);
       return;
@@ -66,11 +65,7 @@ function App() {
         question.toLowerCase(),
         `a) Kindly keep the conversation related to veganism b) Stick to English since that is the only language I know c) Kindly include more words in your statements for more clarity  `,
       ]);
-      // setList((prevState)=> [
-      //   ...list,
-      //   question.toLowerCase(),
-      //   `a) Kindly keep the conversation related to veganism b) Stick to English since that is the only language I know c) Kindly include more words in your statements for more clarity  `,
-      // ]);
+
       setQuestion("");
       setIsProcessing(false);
       setTimeout(() => {
@@ -97,6 +92,7 @@ function App() {
     let minDistance = 1;
     let reply = "";
     const embeddings = (await model.embed(embedArray)).unstack();
+
     let foo = new Promise((resolve, reject) => {
       embeddings.forEach(async (eachEmbedding, index) => {
         if (index === 0) {
@@ -106,16 +102,12 @@ function App() {
           .cosineDistance(embeddings[0], embeddings[index], 0)
           .data();
         tempDistance = tempDistance[0];
-        // console.log(
-        //   "distance for ",
-        //   Object.keys(userStatements)[index - 1],
-        //   " : ",
-        //   tempDistance
-        // );
 
+        //optimization probably?
         if (tempDistance < minDistance) {
           minDistance = tempDistance;
           reply = userStatements[Object.keys(userStatements)[index - 1]];
+          console.log("changing reply");
         }
 
         if (index === embeddings.length - 1) {
@@ -127,37 +119,24 @@ function App() {
     foo.then(() => {
       if (reply === "ask the user a question") {
         // window.alert("user wants th bot to ask a question");
-        console.log("indics length : ", botQuestionsIndices.current.length);
-        console.log("bot questions length : ", botQuestions.length);
         if (botQuestionsIndices.current.length === botQuestions.length) {
           reply =
             // "I don't have anything left to ask you. I hope that my previous questions left you with insightful thoughts that can convince you to go vegan!";
             "I don't have anything left to ask you.";
         } else {
-          console.log("bot questions : ", botQuestions);
           botQuestions.forEach((eachQuestion, index) => {
             let randomIndex = Math.floor(Math.random() * botQuestions.length);
-            console.log("random index : ", randomIndex);
             if (!botQuestionsIndices.current.includes(randomIndex)) {
               reply = botQuestions[randomIndex];
-              console.log("rarndom reply : ", reply);
               botQuestionsIndices.current.push(randomIndex);
             }
           });
         }
       }
+
       if (minDistance < 0.5) {
-        // setList([...list, question, reply]);
-        // setList([...list, reply]);
         setList((prevState) => [...prevState, reply]);
       } else {
-        //statement is very far from all given data
-        // setList([
-        //   ...list,
-        //   question,
-        //   `( ${minDistance}) Kindly keep the conversation related to veganism  `,
-        // ]);
-
         setList((prevState) => [
           ...prevState,
           `Kindly keep the conversation related to veganism`,
@@ -421,6 +400,23 @@ function App() {
               ) : (
                 <></>
               )}
+              {error ? (
+                <Alert
+                  sx={{
+                    // width: "content",
+                    justifySelf: "center",
+                    alignSelf: "center",
+                    backgroundColor: "white",
+                    color: "firebrick",
+                    padding: "0ch 1ch",
+                  }}
+                  severity="error"
+                >
+                  Type something!
+                </Alert>
+              ) : (
+                <></>
+              )}
             </Stack>
 
             {/* question */}
@@ -486,7 +482,6 @@ function App() {
                 TELL
               </Button> */}
             </Stack>
-            {error ? <Alert severity="error">Type something</Alert> : <></>}
             {/* <button className="buttonSubmit bg-secondary text-primary-light-2  text-hover-tertiary-light-1  ">
               Number 2 tell
             </button> */}
